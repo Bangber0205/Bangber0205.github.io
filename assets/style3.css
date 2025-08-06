@@ -74,6 +74,7 @@ nav{
     color: var(--white);
     text-align: center;
     margin-top: 5px;
+    font-family: "Poppins", sans-serif;
 }
 .cuaca img, .bencana img{
     width: 70%;
@@ -105,6 +106,7 @@ nav{
 .wm{
     text-align: center;
     font-size: 1rem;
+    font-family: "Poppins", sans-serif;
 }
 main{
     width: 80%;
@@ -209,3 +211,4 @@ option {
             padding: 10px;
             border-radius: 6px;
         }
+
