@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wavy | Peringatan Dini Megathrust</title>
+    <link rel="stylesheet" href="assets/style3.css">
+    <link rel="icon" href="assets/images/cloudy.png">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+    <style>
+      
+
+    </style>
+</head>
+<body>
+    <nav>
+        <section class="logo-nav">
+            <img src="assets/images/cloudy.png" alt="Logo Wavy">
+        </section>
+        <section class="navbar">
+            <div class="cuaca">
+                <img src="assets/images/earthquake.png" alt="">
+                <a href="home.html"><p>Info Gempa</p></a>
+            </div>
+            <div class="bencana">
+                <img src="assets/images/healthy.png" alt="">
+                <p>Jalur Evakuasi</p>
+            </div>
+            <div class="footer">
+                <img src="assets/images/emergency-call.png" alt="">
+                <a href=""><p>PANGGILAN DARURAT</p></a>
+            </div>
+            <div class="wm">
+                <p>© 2025 Wavy.co.id</p>
+            </div>
+        </section>
+    </nav>
+
+    <main>
+        <div id="map"></div>
+
+        <section class="direction" id="direction">
+            <h1>Jalur Evakuasi yang Tersedia :</h1>
+            <select name="jalur" id="jalurSelect">
+                <option value="">-- Pilih Jalur Evakuasi --</option>
+                <option value="alun-alun">Alun-Alun</option>
+                <option value="politeknik">Politeknik Negeri Cilacap</option>
+            </select>
+            <div id="infoBox" class="info" style="display: none;"></div>
+        </section>
+    </main>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+
+    <script>
+        const jalurData = {
+            "alun-alun": {
+                nama: "Alun-Alun",
+                arah: "Utara",
+                koordinat: [-7.732, 109.013],
+                jarak: "1.5 km",
+                keterangan: "Tempat terbuka luas, aman dari reruntuhan."
+            },
+            "politeknik": {
+                nama: "Politeknik Cilacap",
+                arah: "Timur Laut",
+                koordinat: [-7.728, 109.017],
+                jarak: "2.0 km",
+                keterangan: "Lokasi aman dan dekat dengan tim SAR."
+            }
+        };
+
+        const startPoint = [-7.740532, 109.012283]; // Pantai Teluk Penyu
+        const map = L.map('map').setView(startPoint, 14);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        L.marker(startPoint).addTo(map)
+            .bindPopup('Titik Awal: Pantai Teluk Penyu')
+            .openPopup();
+
+        const selectElement = document.getElementById("jalurSelect");
+        const infoBox = document.getElementById("infoBox");
+
+        let control = null;
+
+        selectElement.addEventListener("change", function () {
+            const value = this.value;
+
+            if (jalurData[value]) {
+                const data = jalurData[value];
+                infoBox.style.display = "block";
+                infoBox.innerHTML = `
+                    <h2>Informasi Jalur : ${data.nama}</h2>
+                    <p><strong>Arah :</strong> ${data.arah}</p>
+                    <p><strong>Koordinat :</strong> ${data.koordinat[0]}, ${data.koordinat[1]}</p>
+                    <p><strong>Jarak :</strong> ${data.jarak}</p>
+                    <p><strong>Keterangan :</strong> ${data.keterangan}</p>
+                `;
+
+                if (control !== null) {
+                    map.removeControl(control);
+                }
+
+                control = L.Routing.control({
+                    waypoints: [
+                        L.latLng(startPoint),
+                        L.latLng(data.koordinat)
+                    ],
+                    routeWhileDragging: false
+                }).addTo(map);
+            } else {
+                infoBox.style.display = "none";
+                infoBox.innerHTML = "";
+
+                if (control !== null) {
+                    map.removeControl(control);
+                    control = null;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
