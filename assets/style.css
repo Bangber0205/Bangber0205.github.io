@@ -172,4 +172,143 @@ main{
     font-weight: 700;
     font-size: 1rem;
 }
- 
+
+/* Responsif */
+@media (max-width: 480px){
+    body{
+        height: 100%;
+    }
+    main{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo p{
+        text-align: center;
+    }
+    .content-footer{
+        width: 100vw;
+    }
+    .content-footer p{
+        text-align: center;
+    }
+    .content-footer figcaption{
+        color: black;
+        text-align: center;
+
+    }
+    .website, .instagram, .facebook, .twitter{
+    padding: 10px;
+    border-radius: 10px;
+}
+    .info-socmed{
+        width: 100vw;
+        height: 100%;
+        gap: 20px;
+    }
+    .info-socmed h1{
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    text-align: center;
+    color: var(--primary);
+}
+    .socmed{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    filter: invert(0);
+}
+    .website img{
+    width: 20%;
+    height: auto;
+}
+.instagram img{
+    width: 20%;
+    height: auto;
+}
+.facebook img{
+    width: 20%;
+    height: auto;   
+}
+.twitter img{
+    width: 20%;
+    height: auto;
+}
+.website, .instagram, .facebook, .twitter p{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+}
+}
+@media (max-width: 768px){
+    body{
+        height: 100%;
+    }
+    main{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo p{
+        text-align: center;
+    }
+    .content-footer{
+        width: 100vw;
+    }
+    .content-footer p{
+        text-align: center;
+    }
+    .content-footer figcaption{
+        color: black;
+        text-align: center;
+
+    }
+    .website, .instagram, .facebook, .twitter{
+    padding: 10px;
+    border-radius: 10px;
+}
+    .info-socmed{
+        width: 100vw;
+        height: 100%;
+        gap: 20px;
+    }
+    .info-socmed h1{
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    text-align: center;
+    color: var(--primary);
+}
+    .socmed{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    filter: invert(0);
+}
+    .website img{
+    width: 20%;
+    height: auto;
+}
+.instagram img{
+    width: 20%;
+    height: auto;
+}
+.facebook img{
+    width: 20%;
+    height: auto;   
+}
+.twitter img{
+    width: 20%;
+    height: auto;
+}
+.website, .instagram, .facebook, .twitter p{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+}
+}

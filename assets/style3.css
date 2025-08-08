@@ -9,38 +9,38 @@
     --white: white;
     --black: black;
 }
+
 *, html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/* Layout utama: sidebar kiri, konten kanan */
 body{
-    background: url('images/6221846.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
-    height: 100vh;
+    background: url('images/6221846.jpg') no-repeat bottom/cover;
+    min-height: 100vh;
     display: flex;
-    overflow: hidden;
+    flex-direction: row; /* sidebar di kiri */
+    overflow-x: hidden;
     font-family: "Poppins", sans-serif;
     color: var(--white);
 }
+
+/* Sidebar */
 nav{
-    height: calc(100vh - 20px); 
-    width: 8%;
+    flex: 0 0 8%;
     margin: 10px;
     border-radius: 10px;
     background: linear-gradient(60deg, var(--primary), var(--secondary), var(--tertiary), var(--extra));
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
     padding-top: 10px;
     gap: 40px;
+    box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
 }
+
 .logo-nav{
     width: 100%;
     display: flex;
@@ -50,6 +50,7 @@ nav{
     width: 60%;
     height: auto;
 }
+
 .navbar{
     display: flex;
     flex-direction: column;
@@ -57,6 +58,7 @@ nav{
     align-items: center;
     width: 100%;
 }
+
 .cuaca, .bencana, .footer{
     display: flex;
     flex-direction: column;
@@ -74,7 +76,6 @@ nav{
     color: var(--white);
     text-align: center;
     margin-top: 5px;
-    font-family: "Poppins", sans-serif;
 }
 .cuaca img, .bencana img{
     width: 70%;
@@ -84,11 +85,11 @@ nav{
 .cuaca a{
     text-decoration: none;
 }
+
 .footer{
     background-color: red;
 }
 .footer:hover{
-    transition: all ease 0.5s;
     background-color: rgba(0, 0, 0, 0.5);
     transform: scale(1.05);
 }
@@ -103,34 +104,105 @@ nav{
     background-color: var(--secondary);
     transform: scale(1.05);
 }
+
 .wm{
     text-align: center;
     font-size: 1rem;
-    font-family: "Poppins", sans-serif;
 }
+
+/* Konten utama */
 main{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-}
-.map{
-    margin: 15px;
-}
-.map iframe{
-    border: none;
-    border-radius: 10px;
-    width: 175vh;
-    height: 50vh;
-    box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
-}
-.direction{
-    margin: 15px;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 15px;
+    gap: 15px;
 }
+
+/* Form input titik awal */
+.manual-input {
+    background-color: rgba(0, 59, 70, 0.85);
+    color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.manual-input h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.manual-input input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+}
+
+.manual-input input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.manual-input button {
+    background-color: var(--bonus);
+    color: var(--black);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.manual-input button:hover {
+    background-color: var(--extra);
+    transform: scale(1.05);
+}
+
+.manual-input p {
+    font-size: 0.85rem;
+    text-align: center;
+    opacity: 0.9;
+}
+
+/* Map besar penuh area */
+#map {
+    height: calc(100vh - 250px); /* sisa tinggi layar setelah form */
+    width: 95%;
+    max-width: 1400px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown dan info jalur */
+.direction{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+.direction h1 {
+    margin-bottom: 10px;
+}
+
 select {
     border-radius: 3px;
     padding: 12px;
@@ -139,76 +211,21 @@ select {
     color: var(--white);
     background: none;
     cursor: pointer;
-    width: 35%;
+    width: 100%;
     box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
 }
 option {
     padding: 5px;
     font-size: 15px;
     color: var(--black);
 }
+
 .info {
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 15px;
     border: 1px solid #ccc;
     background-color: var(--black);
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
     border-radius: 5px;
     box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 6px 53px 0px rgba(0,0,0,0.75);
 }
-/* Fixing */
-  html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow-y: auto;
-            font-family: sans-serif;
-        }
-
-        main {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        }
-
-        #map {
-            height: 400px;
-            width: 90%;
-            max-width: 800px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .direction {
-            width: 90%;
-            max-width: 800px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .direction h1 {
-            margin-top: 0;
-        }
-
-        select {
-            padding: 8px;
-            width: 100%;
-            margin-top: 10px;
-            font-size: 1rem;
-        }
-
-        .info {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 6px;
-        }
-
